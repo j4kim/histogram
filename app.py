@@ -6,19 +6,20 @@ df = pd.read_csv('data.csv')
 
 app = Dash(__name__)
 
-app.layout = html.Div([
-    html.H1(children='Histogram'),
-    dcc.Dropdown(df.testcase.unique(), 'mes', id='dropdown-selection'),
-    dcc.Graph(id='graph-content')
-])
-
-@callback(
-    Output('graph-content', 'figure'),
-    Input('dropdown-selection', 'value')
+fig = px.line(
+    df,
+    x='time',
+    y='duration',
+    title='Duration over time',
+    color='testcase',
+    markers=True
 )
-def update_graph(value):
-    dff = df[df.testcase==value]
-    return px.line(dff, x='time', y='duration')
+
+fig.add_vline(x='2024-01-26 14:00:00')
+
+app.layout = html.Div([
+    dcc.Graph(figure=fig)
+])
 
 if __name__ == '__main__':
     app.run(debug=True)
