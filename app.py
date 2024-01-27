@@ -3,18 +3,17 @@ import plotly.express as px
 import pandas as pd
 from datetime import datetime
 
-df = pd.read_csv('data.csv')
+df = pd.read_csv('requests.csv')
 
-df['time'] = pd.to_datetime(df['time'])
+df['dt'] = pd.to_datetime(df['dt'])
 
 app = Dash(__name__)
 
 fig = px.line(
     df,
-    x='time',
-    y='duration',
-    title='Duration over time',
-    color='testcase',
+    x='dt',
+    y='ms',
+    title='Request duration over time',
     markers=True
 )
 
