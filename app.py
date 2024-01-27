@@ -9,12 +9,13 @@ df['dt'] = pd.to_datetime(df['dt'])
 
 app = Dash(__name__)
 
-fig = px.line(
+fig = px.histogram(
     df,
     x='dt',
     y='ms',
-    title='Request duration over time',
-    markers=True
+    title='Request duration',
+    color="app",
+    histfunc='sum',
 )
 
 fig.add_vline(
