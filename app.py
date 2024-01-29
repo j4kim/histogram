@@ -17,14 +17,13 @@ fig = px.histogram(
     y='ms',
     title='Request duration',
     color="app",
-    histfunc='sum',
+    histfunc='avg',
 )
 
 
 for i, row in ev.iterrows():
     fig.add_vline(
         x=datetime.timestamp(row['dt']) * 1000,
-        # x=1706274000000,
         annotation_text=row['event'],
         annotation_position='top right',
         annotation_yshift=-(i%4) * 15,
