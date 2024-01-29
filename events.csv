@@ -1,0 +1,11 @@
+dt,event
+2024-01-25 14:31:00,rebuild indexes
+2024-01-26 11:05:00,create 2 indexes on confirmations
+2024-01-26 11:15:00,create 2 indexes on sessions
+2024-01-26 12:11:00,maxdop 2 to 4
+2024-01-26 15:57:00,fix e-change
+2024-01-27 10:30:00,ram sql 16 to 24
+2024-01-29 08:45:00,ram server 30 to 40
+2024-01-29 10:50:00,ram sql 24 to 30
+2024-01-29 11:09:36,disable chneusql160 dc jobs
+2024-01-29 12:00:00,enable chneusql160 dc jobs

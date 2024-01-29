@@ -4,8 +4,10 @@ import pandas as pd
 from datetime import datetime
 
 df = pd.read_csv('requests.csv')
+ev = pd.read_csv('events.csv')
 
 df['dt'] = pd.to_datetime(df['dt'])
+ev['dt'] = pd.to_datetime(ev['dt'])
 
 app = Dash(__name__)
 
@@ -18,12 +20,15 @@ fig = px.histogram(
     histfunc='sum',
 )
 
-fig.add_vline(
-    x=datetime.timestamp(pd.to_datetime('2024-01-26 14:00:00')) * 1000,
-    # x=1706274000000,
-    annotation_text='Action',
-    annotation_position='top right'
-)
+
+for i, row in ev.iterrows():
+    fig.add_vline(
+        x=datetime.timestamp(row['dt']) * 1000,
+        # x=1706274000000,
+        annotation_text=row['event'],
+        annotation_position='top right',
+        annotation_yshift=-(i%4) * 15,
+    )
 
 app.layout = html.Div([
     dcc.Graph(figure=fig)
