@@ -16,13 +16,14 @@ fig = px.scatter(
     x='dt',
     y='ms',
     title='Request duration',
-    color="app",
+    color="method",
     hover_data=[
         'id',
         'user',
         'app',
         'method',
         'path',
+        'filename',
     ],
 )
 
