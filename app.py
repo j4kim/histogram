@@ -11,13 +11,19 @@ ev['dt'] = pd.to_datetime(ev['dt'])
 
 app = Dash(__name__)
 
-fig = px.histogram(
+fig = px.scatter(
     df,
     x='dt',
     y='ms',
     title='Request duration',
     color="app",
-    histfunc='avg',
+    hover_data=[
+        'id',
+        'user',
+        'app',
+        'method',
+        'path',
+    ],
 )
 
 
